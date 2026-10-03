@@ -1,0 +1,20 @@
+@import './components.css';
+@import './led.css';
+
+:root {
+  /* Theme color */
+  --color-amber: #ff9d00;
+  --color-amber-glow: rgba(255, 157, 0, 0.4);
+  --color-violet: #9d4edd;
+  --color-violet-light: #e9d5ff;
+  --color-gold: #ffb703;
+
+  /* Elements */
+  --color-chassis-dark: #0a0a0f;
+  --color-chassis-titanium: #15141e;
+  --color-chassis-border: #2a2838;
+  --color-chassis-slate: #8c879d;
+
+  /* Texts */
+  --color-text-main: #e2deea;
+}

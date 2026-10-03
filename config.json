@@ -1,0 +1,23 @@
+{
+  "overlay": {
+    "opacity": 0.8,
+    "scanlines": true
+  },
+  "animation": {
+    "autoRotateSpeed": {
+      "outer": { "x": 0.0018, "y": 0.003, "z": 0.001 },
+      "inner": { "x": -0.0025, "y": -0.004, "z": -0.002 }
+    },
+    "gradientSpeed": 0.001,
+    "mouseSensibility": 0.05
+  },
+  "colors": [
+    "#ff9d00",
+    "#9d4edd",
+    "#ffb703"
+  ],
+  "geometries": {
+    "outerOctahedron": { "radius": 2.3, "detail": 0 },
+    "innerIcosahedron": { "radius": 1.15, "detail": 0 }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "wordle-solver": {
+    "title": "WordleSolver",
+    "category": "Qt 6.8.3 / QML / Mathematics",
+    "video": "assets/projects/wordle-demo.mp4",
+    "desc": "A C++ solver designed to find 5-letter Wordle secret words efficiently using Information Theory. The application calculates the entropy H = Σ p_i * log2(1/p_i) for each candidate word against all 243 possible color pattern combinations (3⁵). The guess with the highest entropy is prioritized to minimize the remaining word space.",
+    "tags": ["C++", "Qt 6.8.3", "QML", "Information Theory", "Entropy"],
+    "specs": [
+      { "label": "Built With", "value": "QtCreator & Qt 6.8.3" },
+      { "label": "Complexity", "value": "O(N²) per turn" },
+      { "label": "Word Pattern Space", "value": "3⁵ = 243 patterns" },
+      { "label": "Dictionary Size", "value": "~5000 candidate words" }
+    ],
+    "github": "https://github.com/Maxime-Limosin/WordleSolver"
+  },
+  "arduino-ambilight": {
+    "title": "Arduino Ambilight",
+    "category": "Embedded Hardware / FastLED",
+    "video": "assets/projects/ambilight-demo.mp4",
+    "desc": "An ambient lighting system driving a WS2812B addressable LED strip around a display. The Arduino Leonardo receives color data over serial using the Adalight protocol from Prismatik (configured at 115200 baud). The strip is powered directly via an external 5V 2A power supply.",
+    "tags": ["Arduino Leonardo", "WS2812B", "Prismatik", "Adalight", "FastLED"],
+    "specs": [
+      { "label": "Microcontroller", "value": "Arduino Leonardo (Pin D6)" },
+      { "label": "Protocol & Rate", "value": "Adalight Serial @ 115200 Baud" },
+      { "label": "LED Configuration", "value": "102 WS2812B LEDs" },
+      { "label": "Power Supply", "value": "External PSU 5V 2A" }
+    ],
+    "github": "https://github.com/Maxime-Limosin/ArduinoAmbilight"
+  }
+}

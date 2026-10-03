@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-chassis-dark text-text-main">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maxime Limosin - Portfolio</title>
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+
+  <!-- External Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          boxShadow: {
+            'glow-amber': '0 0 20px rgba(255, 157, 0, 0.25)',
+            'card-amber': '0 10px 30px rgba(255, 157, 0, 0.25)',
+            'card-violet': '0 10px 30px rgba(157, 78, 221, 0.25)',
+          },
+          dropShadow: {
+            'glow-amber': '0 0 12px rgba(255, 157, 0, 0.45)',
+            'glow-violet': '0 0 12px rgba(157, 78, 221, 0.5)',
+          },
+          colors: {
+            'text-main': 'var(--color-text-main)',
+            chassis: {
+              dark: 'var(--color-chassis-dark)',
+              titanium: 'var(--color-chassis-titanium)',
+              border: 'var(--color-chassis-border)',
+              amber: 'var(--color-amber)',
+              violet: 'var(--color-violet)',
+              'violet-light': 'var(--color-violet-light)',
+              slate: 'var(--color-chassis-slate)',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="font-sans antialiased relative min-h-screen overflow-x-hidden bg-chassis-dark text-text-main select-none">
+
+  <!-- WebGL Container -->
+  <div id="webgl-container" class="fixed inset-0 z-0 pointer-events-none transition-opacity duration-500"></div>
+
+  <!-- Background Overlays -->
+  <div
+    class="fixed inset-0 z-[1] pointer-events-none bg-[radial-gradient(ellipse_at_center,_transparent_0%,_var(--color-chassis-dark)_85%)] dark-overlay">
+  </div>
+  <div class="fixed inset-0 z-[1] pointer-events-none bg-blueprint-grid opacity-30"></div>
+  <div id="scanlines-layer" class="scanlines-overlay z-[2]"></div>
+
+  <!-- Navigation -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-md border-b border-white/[0.05]">
+    <div class="max-w-7xl mx-auto px-8 md:px-16 h-20 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="led-container">
+          <span class="w-2 h-2 bg-chassis-amber rounded-sm inline-block led-boot js-led"></span>
+        </div>
+        <span class="font-title text-lg tracking-wider text-white font-bold">MAXIME LIMOSIN</span>
+        <span
+          class="font-mono text-xs tracking-wider text-chassis-slate uppercase ml-2 border-l border-white/10 pl-3 hidden sm:inline-block">
+          Embedded Software Engineer</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-10 font-mono text-xs tracking-widest uppercase text-chassis-slate">
+        <a href="#home" class="hover:text-chassis-amber transition-colors duration-300">Home</a>
+        <a href="#about" class="hover:text-chassis-amber transition-colors duration-300">About Me</a>
+        <a href="#projects" class="hover:text-chassis-amber transition-colors duration-300">Projects</a>
+      </nav>
+
+      <a href="#contact"
+        class="chamfer-btn-wrapper bg-white/20 p-[1px] inline-block transition-all duration-300 hover:drop-shadow-glow-amber">
+        <span
+          class="chamfer-btn-content bg-chassis-titanium text-white hover:text-chassis-amber font-mono text-xs tracking-wider uppercase px-5 py-2.5 block transition-colors duration-300">
+          Contact
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-20">
+
+    <!-- Home Section -->
+    <section id="home"
+      class="min-h-[calc(100vh-5rem)] flex flex-col justify-center max-w-7xl mx-auto px-8 md:px-20 py-20 relative">
+      <div class="max-w-4xl space-y-8">
+
+        <div
+          class="inline-flex items-center gap-3 px-4 py-2 bg-chassis-titanium/80 border-l-2 border-chassis-amber border-y border-r border-white/10 font-mono text-xs text-chassis-amber tracking-wider">
+          <span class="w-1.5 h-1.5 bg-chassis-amber"></span>
+          Software Development &amp; Embedded Systems
+        </div>
+
+        <h1 class="font-title text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-[1.05] uppercase">
+          PORTFOLIO<br>
+          <span class="bg-gradient-to-r from-white via-chassis-amber to-chassis-violet bg-clip-text text-transparent">
+            MAXIME LIMOSIN
+          </span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-chassis-slate max-w-2xl font-light leading-relaxed">
+          Hey,<br />My name is Maxime LIMOSIN, I'm an embedded software engineer working mainly with C++ and Qt. Feel
+          free to explore my projects or reach out to me!
+        </p>
+
+        <div class="flex flex-wrap items-center gap-5 pt-4">
+          <a href="#projects"
+            class="chamfer-btn px-8 py-4 bg-chassis-amber text-black font-mono font-bold text-xs tracking-widest uppercase hover:bg-white transition-all duration-300 amber-glow">
+            BROWSE MY PROJECTS &rarr;
+          </a>
+          <a href="#about"
+            class="chamfer-btn-wrapper bg-white/20 p-[1px] inline-block transition-all duration-300 hover:drop-shadow-glow-violet">
+            <span
+              class="chamfer-btn-content bg-chassis-titanium text-white hover:text-chassis-violet-light font-mono font-bold text-xs tracking-widest uppercase px-8 py-4 block transition-colors duration-300">
+              ABOUT ME
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-28 border-t border-white/[0.08] relative">
+      <div class="max-w-7xl mx-auto px-8 md:px-20">
+
+        <div class="flex items-center gap-4 font-mono text-xs tracking-widest text-chassis-amber uppercase mb-12">
+          <span>01</span>
+          <span class="w-8 h-[1px] bg-chassis-amber opacity-40"></span>
+          <span>Profile &amp; Background</span>
+        </div>
+
+        <div
+          class="glass-chassis rounded-lg p-8 md:p-12 clean-card border border-white/10 hover:border-chassis-amber hover:shadow-card-amber w-full transition-all duration-300">
+
+          <!-- Header avec Photo -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 pb-8 mb-8 border-b border-white/10">
+            <img src="assets/img/bg.jpg" alt="Maxime Limosin"
+              class="w-24 sm:w-28 h-24 sm:h-28 rounded-full border-2 border-chassis-amber/60 object-cover shadow-glow-amber shrink-0" />
+            <div class="space-y-1">
+              <span class="font-mono text-xs text-chassis-amber tracking-wider uppercase">Embedded Software
+                Engineer</span>
+              <h2 class="font-title text-3xl sm:text-4xl text-white">MAXIME LIMOSIN</h2>
+            </div>
+          </div>
+
+          <!-- Main Story -->
+          <div class="space-y-5 text-chassis-slate text-sm sm:text-base leading-relaxed font-light">
+            <p>
+              My journey into programming started in 2017, tinkering with C++ on Arduino and writing BASIC scripts on a
+              Casio Graph 35+ calculator. What began as fascination quickly turned into a dedicated career path.
+            </p>
+            <p>
+              After building a broad foundation in Computer Science (C, OOP in Java/C++/C#, Web, Linux systems,
+              networking, and databases), I earned my Engineering Degree in Embedded Systems at UTT (France). Since
+              then, I’ve been designing cross-platform desktop applications (Linux/Windows) and real-time software
+              embedded in UAVs.
+            </p>
+            <p>
+              An RC model aircraft enthusiast and lifelong tech learner, I enjoy exploring new domains, solving
+              low-level challenges, and building clean, reliable software architectures.
+            </p>
+          </div>
+
+          <!-- Quick Metrics -->
+          <div class="grid sm:grid-cols-2 gap-6 pt-8 mt-8 border-t border-white/10 font-mono">
+            <div class="p-4 bg-chassis-titanium/60 border border-white/5 rounded">
+              <span class="text-lg font-bold text-chassis-amber block">2017 — NOW</span>
+              <span class="text-[10px] text-chassis-slate tracking-wider uppercase">Coding &amp; Tinkering</span>
+            </div>
+
+            <div class="p-4 bg-chassis-titanium/60 border border-white/5 rounded">
+              <span class="text-lg font-bold text-chassis-violet-light block">C++ / LINUX</span>
+              <span class="text-[10px] text-chassis-slate tracking-wider uppercase">UAV &amp; Desktop Apps</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-28 border-t border-white/[0.08] relative">
+      <div class="max-w-7xl mx-auto px-8 md:px-20">
+
+        <div class="flex justify-between items-end mb-16">
+          <div>
+            <div class="flex items-center gap-4 font-mono text-xs tracking-widest text-chassis-amber uppercase mb-4">
+              <span>02</span>
+              <span class="w-8 h-[1px] bg-chassis-amber opacity-40"></span>
+              <span>Personal Projects</span>
+            </div>
+            <h2 class="font-title text-3xl sm:text-5xl text-white uppercase tracking-tight">Personal R&amp;D</h2>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+          <!-- Project 1 -->
+          <article onclick="openProjectModal('wordle-solver')"
+            class="glass-chassis rounded-lg overflow-hidden border border-white/10 hover:border-chassis-amber hover:shadow-card-amber flex flex-col justify-between group cursor-pointer transition-all duration-300">
+
+            <div class="relative h-48 w-full overflow-hidden bg-chassis-titanium">
+              <img src="assets/projects/wordle-thumb.png" alt="WordleSolver Thumbnail"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
+              <div class="absolute inset-0 bg-gradient-to-t from-chassis-titanium via-transparent to-transparent"></div>
+              <span
+                class="absolute top-3 left-3 px-2.5 py-1 bg-chassis-titanium/90 border border-chassis-amber/40 text-chassis-amber font-mono text-[10px] uppercase tracking-wider rounded-sm backdrop-blur-md">
+                Qt / Algorithmic
+              </span>
+            </div>
+
+            <div class="p-6 space-y-4">
+              <h3 class="font-title text-2xl text-white group-hover:text-chassis-amber transition-colors duration-300">
+                WordleSolver
+              </h3>
+
+              <p class="text-sm text-chassis-slate leading-relaxed font-light line-clamp-2">
+                An algorithmic solver utilizing Information Theory and Entropy optimization to guess Wordle words in
+                minimal tries.
+              </p>
+
+              <div class="flex flex-wrap gap-2 font-mono text-[11px] pt-2">
+                <span
+                  class="px-2.5 py-1 bg-chassis-titanium border border-white/10 text-slate-300 rounded-sm">C++</span>
+                <span class="px-2.5 py-1 bg-chassis-titanium border border-white/10 text-slate-300 rounded-sm">Qt
+                  6.8.3</span>
+                <span
+                  class="px-2.5 py-1 bg-chassis-titanium border border-white/10 text-slate-300 rounded-sm">QML</span>
+                <span
+                  class="px-2.5 py-1 bg-chassis-titanium border border-white/10 text-slate-300 rounded-sm">Information
+                  Theory</span>
+              </div>
+            </div>
+
+            <div
+              class="px-6 py-4 border-t border-white/5 flex justify-between items-center font-mono text-xs bg-black/20">
+              <span class="text-chassis-amber">Desktop software</span>
+              <span
+                class="text-white tracking-wider uppercase group-hover:text-chassis-amber group-hover:translate-x-1 transition-all duration-300">
+                Details &amp; Video &rarr;
+              </span>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article onclick="openProjectModal('arduino-ambilight')"
+            class="glass-chassis rounded-lg overflow-hidden border border-white/10 hover:border-chassis-violet hover:shadow-card-violet flex flex-col justify-between group cursor-pointer transition-all duration-300">
+
+            <div class="relative h-48 w-full overflow-hidden bg-chassis-titanium">
+              <img src="assets/projects/ambilight-thumb.png" alt="Arduino Ambilight Thumbnail"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
+              <div class="absolute inset-0 bg-gradient-to-t from-chassis-titanium via-transparent to-transparent"></div>
+              <span
+                class="absolute top-3 left-3 px-2.5 py-1 bg-chassis-titanium/90 border border-chassis-violet/40 text-chassis-violet-light font-mono text-[10px] uppercase tracking-wider rounded-sm backdrop-blur-md">
+                Embedded / LEDs
+              </span>
+            </div>
+
+            <div class="p-6 space-y-4">
+              <h3
+                class="font-title text-2xl text-white group-hover:text-chassis-violet-light transition-colors duration-300">
+                Arduino Ambilight
+              </h3>
+
+              <p class="text-sm text-chassis-slate leading-relaxed font-light line-clamp-2">
+                WS2812B ambient lighting system driven by Arduino Leonardo via Prismatik and the Adalight serial
+                protocol.
+              </p>
+
+              <div class="flex flex-wrap gap-2 font-mono text-[11px] pt-2">
+                <span
+                  class="px-2.5 py-1 bg-chassis-titanium border border-white/10 text-slate-300 rounded-sm">Arduino</span>
+                <span
+                  class="px-2.5 py-1 bg-chassis-titanium border border-white/10 text-slate-300 rounded-sm">WS2812B</span>
+                <span
+                  class="px-2.5 py-1 bg-chassis-titanium border border-white/10 text-slate-300 rounded-sm">Adalight</span>
+                <span
+                  class="px-2.5 py-1 bg-chassis-titanium border border-white/10 text-slate-300 rounded-sm">FastLED</span>
+              </div>
+            </div>
+
+            <div
+              class="px-6 py-4 border-t border-white/5 flex justify-between items-center font-mono text-xs bg-black/20">
+              <span class="text-chassis-violet-light">Middleware</span>
+              <span
+                class="text-white tracking-wider uppercase group-hover:text-chassis-violet-light group-hover:translate-x-1 transition-all duration-300">
+                Details &amp; Video &rarr;
+              </span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-28 border-t border-white/[0.08] relative">
+      <div class="max-w-7xl mx-auto px-8 md:px-20 text-center space-y-10">
+
+        <div class="inline-flex items-center gap-4 font-mono text-xs tracking-widest text-chassis-amber uppercase">
+          <span>03</span>
+          <span class="w-8 h-[1px] bg-chassis-amber opacity-40"></span>
+          <span>Contact</span>
+        </div>
+
+        <h2 class="font-title text-3xl sm:text-5xl text-white uppercase tracking-tight max-w-2xl mx-auto">
+          Want to share something with me ?
+        </h2>
+
+        <p class="text-chassis-slate max-w-md mx-auto font-light text-sm sm:text-base">
+          If you have a nerdy project you think might interest me, feel free to get in touch!
+        </p>
+
+        <div class="pt-4">
+          <a href="mailto:max.limosin@gmail.com"
+            class="chamfer-btn inline-block px-10 py-5 bg-chassis-amber text-black font-mono font-bold text-xs tracking-widest uppercase hover:bg-white transition-all duration-300 amber-glow">
+            Email me
+          </a>
+        </div>
+
+        <div
+          class="pt-24 flex flex-col sm:flex-row justify-between items-center border-t border-white/10 font-mono text-xs text-chassis-slate gap-6">
+          <p>&copy; 2026 Maxime Limosin — Open-source code under MIT License.</p>
+          <div class="flex gap-8">
+            <a href="https://github.com/Maxime-Limosin" target="_blank" rel="noopener noreferrer"
+              class="hover:text-white transition-colors">GitHub</a>
+            <a href="https://www.linkedin.com/in/maxime-limosin/" target="_blank" rel="noopener noreferrer"
+              class="hover:text-white transition-colors">LinkedIn</a>
+            <button onclick="document.getElementById('legal-modal').showModal()"
+              class="hover:text-white transition-colors">Legal Notice</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Legal Notice Dialog -->
+  <dialog id="legal-modal"
+    class="bg-chassis-titanium text-[#e2deea] border border-white/10 rounded-lg p-8 max-w-lg w-full backdrop:bg-black/80 font-sans">
+
+    <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-6">
+      <h3 class="font-title text-xl text-white uppercase">Legal Notice</h3>
+      <button onclick="document.getElementById('legal-modal').close()"
+        class="chamfer-btn-wrapper bg-chassis-violet/40 p-[1px] inline-block transition-all duration-300 hover:drop-shadow-glow-violet">
+        <span
+          class="chamfer-btn-content bg-chassis-titanium text-chassis-violet-light hover:text-white font-mono text-xs tracking-wider uppercase px-4 py-2 block transition-colors duration-300">
+          &times; Close
+        </span>
+      </button>
+    </div>
+
+    <div class="space-y-4 text-xs text-chassis-slate leading-relaxed font-light">
+      <p><strong class="text-white font-mono">Site Publisher:</strong><br>Maxime Limosin<br>Contact:
+        max.limosin@gmail.com</p>
+      <p><strong class="text-white font-mono">Hosting Provider:</strong><br>GitHub Inc.<br>88 Colin P Kelly Jr St, San
+        Francisco, CA 94107, USA<br>Website: https://pages.github.com</p>
+      <p><strong class="text-white font-mono">License &amp; Source Code:</strong><br>
+        This website is open-source. The source code and design are shared under the MIT License (free use,
+        modification, and redistribution).</p>
+    </div>
+  </dialog>
+
+  <!-- Modal Fiche Technique Projet -->
+  <dialog id="project-modal"
+    class="bg-chassis-titanium text-[#e2deea] border border-white/10 rounded-lg p-0 max-w-3xl w-full backdrop:bg-black/80 font-sans overflow-hidden">
+    <div id="modal-content" class="p-8 space-y-6"></div>
+  </dialog>
+
+  <!-- App Entry Point Module -->
+  <script type="module" src="./js/app.js"></script>
+
+</body>
+
+</html>

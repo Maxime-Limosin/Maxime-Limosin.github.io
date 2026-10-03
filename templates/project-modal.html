@@ -1,0 +1,36 @@
+<div class="flex justify-between items-start border-b border-white/10 pb-4">
+  <div>
+    <span data-modal-category class="font-mono text-xs text-chassis-amber uppercase tracking-wider"></span>
+    <h3 data-modal-title class="font-title text-2xl text-white mt-1"></h3>
+  </div>
+  <button id="close-modal-btn"
+    class="chamfer-btn-wrapper bg-chassis-violet/40 p-[1px] inline-block transition-all duration-300 hover:drop-shadow-glow-violet">
+    <span
+      class="chamfer-btn-content bg-chassis-titanium text-chassis-violet-light hover:text-white font-mono text-xs tracking-wider uppercase px-4 py-2 block transition-colors duration-300">
+      &times; Close
+    </span>
+  </button>
+</div>
+
+<!-- Video Player -->
+<div
+  class="aspect-video w-full bg-black rounded border border-white/10 overflow-hidden flex items-center justify-center">
+  <video data-modal-video controls autoplay loop muted class="max-w-full max-h-full object-contain">
+    <source src="" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<!-- Description -->
+<p data-modal-desc class="text-sm text-chassis-slate leading-relaxed font-light"></p>
+
+<!-- Specs Grid -->
+<div data-modal-specs class="grid sm:grid-cols-2 gap-3 pt-2 font-mono text-xs"></div>
+
+<!-- Footer Actions -->
+<div class="pt-4 flex justify-end gap-4 border-t border-white/10">
+  <a data-modal-github href="" target="_blank" rel="noopener noreferrer"
+    class="chamfer-btn px-6 py-3 bg-chassis-amber text-black font-mono font-bold text-xs uppercase hover:bg-white transition-colors">
+    View Repository on GitHub &rarr;
+  </a>
+</div>
